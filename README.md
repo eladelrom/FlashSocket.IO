@@ -18,7 +18,7 @@ Because this library is dependent on the websocket library, you must add the sup
 
 # Usage
 
-For Socket.io 0.7 and 0.8 you will need to use the Beta swc that you can find in the downloads  section.  Currently in beta.
+For Socket.io 0.7 and 0.8 or 0.9 you will need to use the Beta swc that you can find in the downloads  section.  Currently in beta or at least commit (bc2d2de4321027ca1a8a844997e2d59b8a9d27a0).
 
 An example of a flex application connecting to a server on localhost is below
 
@@ -96,4 +96,39 @@ An example of a flex application connecting to a server on localhost is below
 		<s:Label id="status" />
 		<s:Label id="glabel" />
 	</s:Application>
+
+The latest socket.io tested is 0.9.13 (as of March 29, 2013).  You can download that version using NPM easily:
+npm install socket.io@0.9.13
+
+In term of node, you ** MUST ** include the following listener:
+
+var socket = io.listen(server, {transports:['flashsocket', 'websocket', 'htmlfile', 'xhr-polling', 'jsonp-polling']});
+
+If you don't include the flashsocket method you will get the following error:
+
+debug - client authorized
+info - handshake authorized **** connection token ****
+warn - unknown transport: "flashsocket"
+
+Example of node.js server script will look as follow:
+
+var express = require('express'),
+    io = require('socket.io'),
+	sys = require('sys'),
+	types = require('./public/js/types');
+
+
+var server = express.createServer();
+var port = process.env.PORT || 3000;
+
+server.configure( function(){
+    server.use(express.static(__dirname + '/public'));
+})
+server.listen(port, function() {
+    console.log('Listening on ' + port);
+});
+
+// socket.io 
+var socket = io.listen(server, {transports:['flashsocket', 'websocket', 'htmlfile', 'xhr-polling', 'jsonp-polling']});
+
 	
