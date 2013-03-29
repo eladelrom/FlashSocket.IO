@@ -18,7 +18,7 @@ Because this library is dependent on the websocket library, you must add the sup
 
 # Usage
 
-For Socket.io 0.7 and 0.8 or 0.9 you will need to use the Beta swc that you can find in the downloads  section.  Currently in beta or at least commit (bc2d2de4321027ca1a8a844997e2d59b8a9d27a0).
+For Socket.io 0.7.x to 0.9.x you will need to use the Beta swc that you can find in the downloads  section.  Currently in beta or you can download the 0.7.x commit bc2d2de4321027ca1a8a844997e2d59b8a9d27a0.
 
 An example of a flex application connecting to a server on localhost is below
 
